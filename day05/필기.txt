@@ -1,0 +1,106 @@
+1. mysql설치
+ - https://www.mysql.com/
+
+2. Django 
+ - pip list : 설치된 모듈 리스트 확인
+ - pip install django : 장고설치 명령어
+ - django-admin startproject django_prj 
+  : 장고프로젝트 생성(django_prj 폴더 생성 후,
+   django_prj 프로젝트 생성)
+ - django-admin startproject django_prj .
+ : 현재 위치에 django_prj 바로 생성
+  - mkdir 폴더이름 : 폴더 생성
+
+3. Project vs app
+ - Project
+	-> 장고 프로젝트를 하나 생성하면 웹페이지를
+	한개 만든다고 생각하는 것과 같다
+
+ - app
+	-> 프로젝트 안은 여러개의 앱들이 존재한다
+	-> 여기서 앱이란 프로젝트라는 하나의 웹페이지
+	안에서 관리자앱, 인증앱, 게시판앱, 뉴스피드앱
+	등등 하나의 기능 구현 단위라고 생각하면 된다.
+ 
+4. 기본키 세팅
+ - 장고 모델에서 기본키(PK)필드를 정의하지 않으면,
+ 장고는 자동으로 id필드를 생성하고 이를 기본 키로
+ 사용한다. id필드는 정수형(PK)필드이며, 자동으로 증가하는
+ 값을 가진다. 
+ - 모델에서 기본키 필드를 직접 정의하면 (primary_key=True), 장고는 id필드를 자동으로 생성하지
+ 않으며, 개발자기 직접 할당을 해야한다. 
+
+5. 속성값
+ - auto_now_add=True
+ : 필드가 생성될 때 현지시간을 자동으로 할당
+ - auto_now=True
+  : 필드가 저장될 때마다 항상 현재 시간을 자동으로 할당
+
+6. render
+ - render는 템플릿을 렌더링하여 클라이언트에게 반환하는
+ 함수이다. render 함수는 일반적으로 장고의 뷰(view)에서
+ 사용되며, 템플릿 HTML로 렌더링한 후 해당 HTML을 
+ HTTP응답으로 반환한다. 
+
+7. Post.objects.all()
+ - https://docs.djangoproject.com/ko/4.2/topics/db/queries/
+ - 장고 ORM을 사용하여 데이터베이스에서 모든 Post객체를
+ 가져오는 코드입니다
+ - select * from blog_post
+
+ 7-1. select
+  # 필터링된 결과를 가져오기
+  - filter_posts = 
+    Post.objects.filter(category='news')
+
+  # 단일 객체 가져오기
+  - obj = Post.objects.get(condition)
+
+ 7-2. update
+  # update할 객체를 가져오기
+  post = Post.objects.get(id=1)
+
+  # 필드 수정
+  post.title = '수정할 타이틀'
+ post.content = '수정할 내용'
+
+ # 저장
+ post.save()
+
+ 7-3. delete
+  # 객체 가져오기
+  post = Post.objects.get(id=1)
+
+ # 객체 삭제
+ post.delete()
+
+8. 장고의 템플릿 언어(Template Language)
+ - 장고에서는 템플릿 파일에서 파이썬 코드를 실행하기위해
+ {% ... %} 기호를 사용하는 문법을 제공
+
+ 8-1. 변수출력
+  {% for item in items %}
+	{{ item }}
+  {% endfor %}
+
+ 8-2. 조건문
+  {% if condition %}
+
+  {% else %}
+
+  {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
