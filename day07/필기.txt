@@ -1,0 +1,34 @@
+1. Relations - 다대일 관계
+ 1-1. from django.contrib.auth.models import User
+ - django에서 제공하는 User모델이다.
+ - 사용자 인증 및 권한 부여를 위해 일반적으로 사용된다.
+ 
+ 1-2. ForeignKey 필드 참조 옵션
+  - CASCADE(기본값)
+	-> 참조하는 객체가 삭제될 때, 해당 참조를
+	가진 객체도 함께 삭제, 연쇄적으로 삭제
+  - SET_NULL
+	-> 참조하는 객체가 삭제될 때, 해당 필드를
+	NULL로 설정
+  - DO_NOTHING
+	-> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

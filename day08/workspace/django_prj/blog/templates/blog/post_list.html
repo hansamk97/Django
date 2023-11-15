@@ -1,0 +1,63 @@
+{% extends 'blog/base.html' %}
+{% block main_area %}
+
+<h1>
+    Blog
+    {% if tag %}
+        <span class="badge badge-light">
+            <i class="fas fa-tags"></i>
+            {{ tag }} ( {{ tag.post_set.count }} )
+        </span>
+    {% endif %}
+</h1>
+
+<!-- Blog Post -->
+{% for p in post_list %}
+<div class="card mb-4">
+    {% if p.head_image %}
+        <img class="card-img-top" src="{{ p.head_image.url }}" alt="Card image cap">
+    {% else %}
+        <img class="card-img-top" src="https://picsum.photos/seed/{{ p.id }}/600/300" alt="Card image cap">
+    {% endif %}
+    <div class="card-body">
+        {% if p.category %}
+            <span class="badge badge-secondary">{{p.category}}</span>
+        {% else %}
+            <span class="badge badge-secondary">미분류</span>
+        {% endif %}
+        <h2 class="card-title">{{ p.title }}</h2>
+        {% if p.hook_text %}
+            <h5 class="text-muted">{{ p.hook_text }}</h5>
+        {% endif %}
+        <p class="card-text">{{ p.content | truncatewords:45 }}</p>
+        <!-- 태그 -->
+        {% if p.tags.exists %}
+            <i class="fas fa-tags"></i>
+            {% for tag in p.tags.iterator %}
+                <a href="{{ tag.get_absolute_url }}">
+                    <span class="badge badge-secondary">{{tag}}</span>
+                </a>
+            {% endfor %}
+            <br/><br/>
+        {% endif %}
+        <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+    </div>
+        <div class="card-footer text-muted">
+        Posted on {{ p.created_at }} by
+        <a href="#">{{ p.author | upper }}</a>
+    </div>
+</div>
+{% endfor %}
+
+
+<!-- Pagination -->
+<ul class="pagination justify-content-center mb-4">
+    <li class="page-item">
+    <a class="page-link" href="#">&larr; Older</a>
+    </li>
+    <li class="page-item disabled">
+    <a class="page-link" href="#">Newer &rarr;</a>
+    </li>
+</ul>
+
+{% endblock %}
