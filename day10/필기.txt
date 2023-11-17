@@ -1,0 +1,87 @@
+1. accounts/login
+ - 장고 프레임워크에서 제공하는 기본 로그인 페이지 URL
+  경로이다
+  - 이 URL경로를 통해 사용자 인증 기능을 구현한 로그인
+  페이지에 접근할 수 있다
+  - accounts는 일반적으로 사용자 계정 관련 기능을 담당
+  하는 앱의 이름을 나타내며, login은 해당 앱내에서
+  로그인 기능을 처리하는 뷰의 이름을 나타낸다. 
+  - django.contrib.auth 앱을 통해 사용자 인증 기능을
+  제공하며, 이 앱에는 로그인과 관련된 뷰와 템플릿이
+  포함되어 있다.
+
+2. accounts/singup
+ - 장고에서 제공해주는 회원가입 페이지
+  - 회원가입과 관련된 뷰와 템플릿이 포함되어 있다. 
+
+3. forms.py
+ - 장고에서 폼을 생성하려면 forms.py파일을 사용한다. 
+  - 클래스를 정의하고, 이를 통해 사용자로부터 데이터를
+  수집한다. 
+
+4. 페이징
+ - 장고 Pagination을 사용
+ - page_obj 라는 객체가 제공
+ - page_obj.next_page_number : 현재 페이지의 다음
+ 페이지 번호를 반환한다. 정수형
+ - page_obj.previous_page_numger : 현재 페이지의 이전
+ 페이지 번호를 반환. 정수형
+ - page_obj.has_next : 다음 값이 있는지
+ - page_obj.has_previos : 이전 값이 있는지
+
+5. get_queryset 
+ - 주요 목적은 데이터베이스로부터 객체 목록을 검색하는
+  데 있어서 특정 조건, 정렬, 필터링 등을 적용하여 
+  원하는 대로 커스터마이징 하는 것입니다. 
+ - ListView에서 get_queryset을 사용하면 해당 뷰가
+ 특정 모델의 객체 목록을 데이터베이스에서 가져온다.
+ - DetailView에서 사용하면 특정 객체를 가져오는데
+ 활용한다. 
+
+6. Q객체
+ - Q객체를 사용하면 여러 조건을 동적으로 연결하여
+ 복잡한 쿼리를 작성할 수 있다. 
+ - OR(|), AND(&)가 들어간 복잡한 쿼리
+ 
+7. django ORM 다양한 필터링
+ - username이 'john'인 사용자 정확하게 일치
+ -> __exact 또는 =
+ -> User.objects.filter(username__exact='john')
+
+ - 대소문자 구분없이 username이 'John'이거나 'john'인
+  사용자 찾기
+ -> __iexact 또는 i=
+ -> User.objects.filter(username__iexact='john')
+
+ - title에 'Django'를 포함하는 글 찾기
+  -> __contains 또는 __icontains
+ -> Article.objects.filter(title__contains='Django')
+
+ - title이 'Django'로 시작하는 글 찾기
+  ->시작하는 문자열(__startwith) 
+ -> Article.objects.filter(title__startwith='Django')
+
+ - title이 'Django'로 끝나는 글 찾기
+  ->끝나는 문자열(__endwith) 
+ -> Article.objects.filter(title__endwith='Django')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
